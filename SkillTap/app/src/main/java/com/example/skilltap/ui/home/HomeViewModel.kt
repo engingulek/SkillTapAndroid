@@ -19,6 +19,7 @@ class HomeViewModel() : ViewModel(),HomeViewModelInterface {
     }
 
     private fun setUiState(){
+        //TODO: string value
         _uiState.value = HomeContract.UiState(
             title = "Hi,Engin",
             subTitle = "What you are looking for is here",
