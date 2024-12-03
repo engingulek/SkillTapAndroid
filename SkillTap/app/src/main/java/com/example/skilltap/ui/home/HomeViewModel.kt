@@ -1,16 +1,16 @@
 package com.example.skilltap.ui.home
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 interface  HomeViewModelInterface {
     var uiState : LiveData<HomeContract.UiState>
-    fun onAction(action:HomeContract.UiAction)
 }
 
-class HomeViewModel : ViewModel(),HomeViewModelInterface {
+class HomeViewModel() : ViewModel(),HomeViewModelInterface {
     private var _uiState = MutableLiveData(HomeContract.UiState())
     override var uiState : LiveData<HomeContract.UiState> = _uiState
 
@@ -33,16 +33,4 @@ class HomeViewModel : ViewModel(),HomeViewModelInterface {
                 "120k freelancer")
         )
     }
-
-    override fun onAction(action: HomeContract.UiAction) {
-        when(action){
-            is HomeContract.UiAction.clickedEstateType -> clickedSearchbar()
-        }
-    }
-
-
-    fun clickedSearchbar(){
-        Log.e("Search bar","clicked")
-    }
-
 }
