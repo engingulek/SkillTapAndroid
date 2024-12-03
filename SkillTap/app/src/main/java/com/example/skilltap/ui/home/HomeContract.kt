@@ -11,6 +11,7 @@ object HomeContract {
         var advertBannerView: BannerView =
             BannerView("","",""),
 
+
     )
 
      data class BannerView(
@@ -18,13 +19,6 @@ object HomeContract {
          var title:String,
          var subTitle: String
      )
-
-
-
-
-    sealed interface UiAction {
-        data object clickedEstateType:UiAction
-    }
 
 
 }
