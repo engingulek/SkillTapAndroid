@@ -29,14 +29,12 @@
             <!-- Advert Image -->
             <ImageView
                 android:id="@+id/advertImage"
-                android:layout_width="match_parent"
+                android:layout_width="180dp"
                 android:layout_height="75dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_notification_overlay"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@color/red"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,24 +43,26 @@
             <!-- Date Label -->
 
             <!-- Detail Label -->
+
             <TextView
-                android:id="@+id/dateTxt"
+                android:id="@+id/priceTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="Date"
-                android:textColor="#8A8A8A"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/titleTxt" />
+                android:layout_marginTop="10dp"
+                android:text="250TL"
+                android:textColor="#FF0000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/titleTxt"
+                app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
             <TextView
                 android:id="@+id/detailTxt"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="Advert description goes here."
                 android:textColor="#5A5A5A"
@@ -70,20 +70,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/advertImage" />
 
             <TextView
                 android:id="@+id/titleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Advert Title"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/advertImage" />
+                app:layout_constraintStart_toEndOf="@+id/advertImage"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
