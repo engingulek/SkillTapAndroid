@@ -1,4 +1,4 @@
-package com.example.skilltap.ui.home
+package com.example.skilltap.ui.home.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

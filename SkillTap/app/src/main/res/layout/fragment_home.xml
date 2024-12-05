@@ -7,10 +7,13 @@
     <data>
         <variable
             name="topOptionsAdapter"
-            type="com.example.skilltap.ui.home.TopOptionsAdapter" />
+            type="com.example.skilltap.ui.home.adapters.TopOptionsAdapter" />
         <variable
             name="uiState"
             type="com.example.skilltap.ui.home.HomeContract.UiState" />
+        <variable
+            name="categoryAdapter"
+            type="com.example.skilltap.ui.home.adapters.CategoryAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,119 +96,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/advertBannerView"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
+        <TextView
+            android:id="@+id/categoryTilteTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topOptionsRvc">
+            app:layout_constraintTop_toBottomOf="@+id/topOptionsRvc" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/banner_corner_design">
-
-                <ImageView
-                    android:id="@+id/advertImageView"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/work" />
-
-                <TextView
-                    android:id="@+id/advertTitleTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{uiState.advertBannerView.title}"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/advertImageView" />
-
-                <TextView
-                    android:id="@+id/advertSubTitleTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{uiState.advertBannerView.subTitle}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/advertTitleTxt" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/freelancerBannerView"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp"
-            android:background="@drawable/banner_corner_design"
-            android:layout_marginEnd="20dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:adapter="@{categoryAdapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topOptionsRvc">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/banner_corner_design">
-
-                <ImageView
-                    android:id="@+id/freelancerImgaView"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/freelancer" />
-
-                <TextView
-                    android:id="@+id/freelancerTitleTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{uiState.freelancerBannerView.title}"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/freelancerImgaView" />
-
-                <TextView
-                    android:id="@+id/freelancerSubTitleTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@{uiState.freelancerBannerView.subTitle}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/freelancerTitleTxt" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryTilteTxt" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
