@@ -6,19 +6,7 @@ object HomeContract {
         var title:String = "",
         var subTitle:String = "",
         var searchbarPlaceHolder:String = "",
-        var freelancerBannerView: BannerView =
-            BannerView("","",""),
-        var advertBannerView: BannerView =
-            BannerView("","",""),
-
-
+        var categoryTitle:String = ""
     )
-
-     data class BannerView(
-         var imageUrl:String,
-         var title:String,
-         var subTitle: String
-     )
-
 
 }
