@@ -34,6 +34,7 @@ class HomeFragment : Fragment() {
         design.searchView.setOnClickListener {
             val nav = HomeFragmentDirections.fromHomeToSearch()
             Navigation.toFragment(requireView(),nav)
+
         }
 
         design.topOptionsRvc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -42,7 +43,7 @@ class HomeFragment : Fragment() {
 
 
         design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val categoryAdapter = CategoryAdapter(requireContext())
+        val categoryAdapter = CategoryAdapter(requireContext(),viewModel)
         design.categoryAdapter = categoryAdapter
         return design.root
     }

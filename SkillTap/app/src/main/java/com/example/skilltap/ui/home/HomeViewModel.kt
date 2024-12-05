@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 
 interface  HomeViewModelInterface {
     var uiState : LiveData<HomeContract.UiState>
+
 }
 
 class HomeViewModel() : ViewModel(),HomeViewModelInterface {
@@ -24,14 +25,9 @@ class HomeViewModel() : ViewModel(),HomeViewModelInterface {
             title = "Hi,Engin",
             subTitle = "What you are looking for is here",
             searchbarPlaceHolder = "What do you need?",
-            freelancerBannerView = HomeContract.BannerView(
-                "",
-                "Adverts",
-                "5k adverts"),
-            advertBannerView = HomeContract.BannerView(
-                "",
-                "Find Freelancer",
-                "120k freelancer")
+            categoryTitle = "Categories"
         )
     }
+
+
 }

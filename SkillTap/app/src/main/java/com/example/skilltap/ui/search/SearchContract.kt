@@ -1,7 +1,7 @@
 package com.example.skilltap.ui.search
 
 import com.example.skilltap.R
-import com.example.skilltap.ui.home.HomeContract.BannerView
+
 
 object SearchContract {
 
