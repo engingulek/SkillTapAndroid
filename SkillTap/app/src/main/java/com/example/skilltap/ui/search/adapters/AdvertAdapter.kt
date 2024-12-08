@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skilltap.R
 import com.example.skilltap.databinding.AdvertAdapterDesignBinding
+import com.example.skilltap.ui.search.SearchFragmentDirections
+import com.example.skilltap.utils.toFragment
 
 class AdvertAdapter(var mContext:Context)
     :RecyclerView.Adapter<AdvertAdapter.AdvertAdapterDesignKeeper>() {
@@ -33,5 +36,10 @@ class AdvertAdapter(var mContext:Context)
 
     override fun onBindViewHolder(holder: AdvertAdapterDesignKeeper, position: Int) {
         holder.design.titleTxt.text = "Test Title"
+        holder.design.advertCardView.setOnClickListener {
+            val nav = SearchFragmentDirections.toAdvertDetail()
+            Navigation.toFragment(it,nav)
+        }
+
     }
 }

@@ -21,7 +21,11 @@
         android:id="@+id/searchFragment"
         android:name="com.example.skilltap.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/toAdvertDetail"
+            app:destination="@id/advertDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subCategoryFragment"
         android:name="com.example.skilltap.ui.subCategory.SubCategoryFragment"
@@ -31,4 +35,9 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/advertDetailFragment"
+        android:name="com.example.skilltap.ui.advertDetail.AdvertDetailFragment"
+        android:label="fragment_advert_detail"
+        tools:layout="@layout/fragment_advert_detail" />
 </navigation>

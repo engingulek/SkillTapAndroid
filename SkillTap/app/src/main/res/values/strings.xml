@@ -7,5 +7,7 @@
     <string name="searchPlaceholder">What do you need?</string>
     <string name="adverts">Adverts</string>
     <string name="freelancers">Freelancers</string>
+    <string name="advertownerimageview">advertOwnerImageView</string>
+    <string name="advertimage">advertImage</string>
 
 </resources>
