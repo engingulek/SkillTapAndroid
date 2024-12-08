@@ -1,4 +1,4 @@
-package com.example.skilltap.ui.search.adapters
+package com.example.skilltap.ui.freelancerDetail
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,14 +11,14 @@ import com.example.skilltap.databinding.AdvertAdapterDesignBinding
 import com.example.skilltap.ui.search.SearchFragmentDirections
 import com.example.skilltap.utils.toFragment
 
-class AdvertAdapter(var mContext:Context)
-    :RecyclerView.Adapter<AdvertAdapter.AdvertAdapterDesignKeeper>() {
-        inner class AdvertAdapterDesignKeeper(var design:AdvertAdapterDesignBinding)
+class OwnerAdvertAdapter(var mContext: Context)
+    :RecyclerView.Adapter<OwnerAdvertAdapter.OwnerAdapterDesignKeeper>(){
+        inner class OwnerAdapterDesignKeeper(var design : AdvertAdapterDesignBinding)
             :RecyclerView.ViewHolder(design.root){
 
             }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertAdapterDesignKeeper {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OwnerAdapterDesignKeeper {
         val layoutInflater = LayoutInflater.from(mContext)
         val design: AdvertAdapterDesignBinding = DataBindingUtil.inflate(
             layoutInflater,
@@ -27,19 +27,18 @@ class AdvertAdapter(var mContext:Context)
             false
         )
 
-        return  AdvertAdapterDesignKeeper(design)
+        return  OwnerAdapterDesignKeeper(design)
     }
 
     override fun getItemCount(): Int {
         return  10
     }
 
-    override fun onBindViewHolder(holder: AdvertAdapterDesignKeeper, position: Int) {
+    override fun onBindViewHolder(holder: OwnerAdapterDesignKeeper, position: Int) {
         holder.design.titleTxt.text = "Test Title"
         holder.design.advertCardView.setOnClickListener {
             val nav = SearchFragmentDirections.toAdvertDetail()
             Navigation.toFragment(it,nav)
         }
-
     }
 }

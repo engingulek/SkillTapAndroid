@@ -7,5 +7,12 @@
     <string name="searchPlaceholder">What do you need?</string>
     <string name="adverts">Adverts</string>
     <string name="freelancers">Freelancers</string>
+    <string name="advertownerimageview">advertOwnerImageView</string>
+    <string name="advertimage">advertImage</string>
+    <string name="basis">Basis</string>
+    <string name="standard">Standard</string>
+    <string name="pro">Pro</string>
+    <string name="packageIncludedTitle">Package Included</string>
+    <string name="advertdesc">Advert Description</string>
 
 </resources>
