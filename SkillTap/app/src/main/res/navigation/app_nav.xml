@@ -25,6 +25,9 @@
         <action
             android:id="@+id/toAdvertDetail"
             app:destination="@id/advertDetailFragment" />
+        <action
+            android:id="@+id/toFreelancerDetail"
+            app:destination="@id/freelancerDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/subCategoryFragment"
@@ -40,4 +43,9 @@
         android:name="com.example.skilltap.ui.advertDetail.AdvertDetailFragment"
         android:label="fragment_advert_detail"
         tools:layout="@layout/fragment_advert_detail" />
+    <fragment
+        android:id="@+id/freelancerDetailFragment"
+        android:name="com.example.skilltap.ui.freelancerDetail.FreelancerDetailFragment"
+        android:label="fragment_freelancer_detail"
+        tools:layout="@layout/fragment_freelancer_detail" />
 </navigation>
