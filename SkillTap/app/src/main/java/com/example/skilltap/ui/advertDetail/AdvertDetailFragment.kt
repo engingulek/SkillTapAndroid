@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentAdvertDetailBinding
+import com.example.skilltap.utils.toFragment
 
 class AdvertDetailFragment : Fragment() {
     private lateinit var design:FragmentAdvertDetailBinding
@@ -25,6 +27,11 @@ class AdvertDetailFragment : Fragment() {
 
         design.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             viewModel.onAction(AdvertDetailContract.UiAction.clicledRadionButton(checkedId))
+        }
+
+        design.sendMessageButton.setOnClickListener {
+            val nav = AdvertDetailFragmentDirections.toMessage()
+            Navigation.toFragment(it,nav)
         }
 
         return  design.root

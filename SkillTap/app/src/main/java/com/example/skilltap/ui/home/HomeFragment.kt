@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentHomeBinding
 import com.example.skilltap.ui.home.adapters.CategoryAdapter
-import com.example.skilltap.ui.home.adapters.TopOptionsAdapter
 import com.example.skilltap.utils.toFragment
 
 class HomeFragment : Fragment() {
@@ -37,10 +36,10 @@ class HomeFragment : Fragment() {
 
         }
 
-        design.topOptionsRvc.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val toOptionAdapter = TopOptionsAdapter(requireContext())
-        design.topOptionsAdapter = toOptionAdapter
-
+        design.messageIcon.setOnClickListener {
+            val nav = HomeFragmentDirections.toLastMessageList()
+            Navigation.toFragment(requireView(),nav)
+        }
 
         design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         val categoryAdapter = CategoryAdapter(requireContext(),viewModel)
