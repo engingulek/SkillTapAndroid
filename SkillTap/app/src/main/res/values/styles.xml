@@ -3,5 +3,13 @@
     <style name="CircularImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+
+    </style>
+
+    <style name="messageIcon" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:padding">20dp</item>
+
     </style>
 </resources>

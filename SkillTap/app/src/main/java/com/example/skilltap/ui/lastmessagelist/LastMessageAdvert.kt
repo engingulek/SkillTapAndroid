@@ -4,10 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skilltap.R
 
 import com.example.skilltap.databinding.LastMessageDesignBinding
+import com.example.skilltap.utils.toFragment
 
 class LastMessageAdvert(var mContext: Context
 ) : RecyclerView.Adapter<LastMessageAdvert.LastMessageKeeper>() {
@@ -35,5 +37,9 @@ class LastMessageAdvert(var mContext: Context
 
     override fun onBindViewHolder(holder: LastMessageKeeper, position: Int) {
         holder.design.lastMessageTxt.text = "last message"
+        holder.design.messageCardView.setOnClickListener {
+            val nav = LastMessageListFragmentDirections.toMessage()
+            Navigation.toFragment(it,nav)
+        }
     }
 }

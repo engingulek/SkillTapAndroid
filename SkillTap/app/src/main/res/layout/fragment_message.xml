@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="messageAdapter"
+            type="com.example.skilltap.ui.message.MessageAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.message.MessageFragment">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/message"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sendMessageIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/sendMessageIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
+            android:background="#FF0000"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/send_message_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editText"
+            app:shapeAppearanceOverlay="@style/messageIcon" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messageRv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adapter="@{messageAdapter}"
+            app:layout_constraintBottom_toTopOf="@+id/sendMessageIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
