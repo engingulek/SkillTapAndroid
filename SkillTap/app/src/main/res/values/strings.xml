@@ -14,5 +14,6 @@
     <string name="pro">Pro</string>
     <string name="packageIncludedTitle">Package Included</string>
     <string name="advertdesc">Advert Description</string>
+    <string name="send_message">Send Message</string>
 
 </resources>

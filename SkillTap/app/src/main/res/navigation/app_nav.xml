@@ -16,6 +16,9 @@
         <action
             android:id="@+id/fromHomeToSubCategory"
             app:destination="@id/subCategoryFragment" />
+        <action
+            android:id="@+id/toLastMessageList"
+            app:destination="@id/lastMessageListFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -48,4 +51,9 @@
         android:name="com.example.skilltap.ui.freelancerDetail.FreelancerDetailFragment"
         android:label="fragment_freelancer_detail"
         tools:layout="@layout/fragment_freelancer_detail" />
+    <fragment
+        android:id="@+id/lastMessageListFragment"
+        android:name="com.example.skilltap.ui.lastmessagelist.LastMessageListFragment"
+        android:label="fragment_last_message_list"
+        tools:layout="@layout/fragment_last_message_list" />
 </navigation>
