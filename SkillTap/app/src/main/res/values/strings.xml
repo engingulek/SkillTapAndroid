@@ -16,5 +16,9 @@
     <string name="advertdesc">Advert Description</string>
     <string name="send_message">Send Message</string>
     <string name="message">Message</string>
+    <string name="hi">Hi</string>
+    <string name="homeSubTittle">What you are looking for is here</string>
+    <string name="categories">Categories</string>
+
 
 </resources>
