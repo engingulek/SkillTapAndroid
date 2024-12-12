@@ -70,4 +70,9 @@ dependencies {
 
     //picasso
     implementation("com.squareup.picasso:picasso:2.71828")
+
+    //Test
+
+    implementation("androidx.arch.core:core-testing:2.2.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
 }

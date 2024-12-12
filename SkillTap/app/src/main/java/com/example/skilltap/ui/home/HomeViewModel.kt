@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.skilltap.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,10 +33,10 @@ class HomeViewModel @Inject constructor(
     private fun setUiState(){
         //TODO: string value
         _uiState.value = HomeContract.UiState(
-            title = "Hi,Engin",
-            subTitle = "What you are looking for is here",
-            searchbarPlaceHolder = "What do you need?",
-            categoryTitle = "Categories"
+            title = R.string.hi,
+            subTitle = R.string.homeSubTittle,
+            searchbarPlaceHolder = R.string.searchPlaceholder,
+            categoryTitle = R.string.categories
         )
     }
 
