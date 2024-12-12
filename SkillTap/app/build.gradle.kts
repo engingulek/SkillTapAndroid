@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -60,4 +62,12 @@ dependencies {
     //Navigation
     implementation ("androidx.navigation:navigation-fragment-ktx:2.5.0")
     implementation ("androidx.navigation:navigation-ui-ktx:2.5.0")
+
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
 }
