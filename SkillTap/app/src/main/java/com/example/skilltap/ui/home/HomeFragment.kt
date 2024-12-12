@@ -14,7 +14,9 @@ import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentHomeBinding
 import com.example.skilltap.ui.home.adapters.CategoryAdapter
 import com.example.skilltap.utils.toFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var design : FragmentHomeBinding
     private lateinit var viewModel: HomeViewModelInterface
@@ -24,9 +26,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
-
+        design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
+
+            val categoryAdapter = CategoryAdapter(requireContext(),it.categoryList)
+            design.categoryAdapter = categoryAdapter
 
         }
 
@@ -41,9 +46,7 @@ class HomeFragment : Fragment() {
             Navigation.toFragment(requireView(),nav)
         }
 
-        design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val categoryAdapter = CategoryAdapter(requireContext(),viewModel)
-        design.categoryAdapter = categoryAdapter
+
         return design.root
     }
 

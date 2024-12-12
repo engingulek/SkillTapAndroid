@@ -6,7 +6,8 @@ object HomeContract {
         var title:String = "",
         var subTitle:String = "",
         var searchbarPlaceHolder:String = "",
-        var categoryTitle:String = ""
+        var categoryTitle:String = "",
+        var categoryList:List<Category> = emptyList()
     )
 
 }
