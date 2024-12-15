@@ -19,6 +19,7 @@
     <string name="hi">Hi</string>
     <string name="homeSubTittle">What you are looking for is here</string>
     <string name="categories">Categories</string>
+    <string name="errorMessage">Something went wrong</string>
 
 
 </resources>

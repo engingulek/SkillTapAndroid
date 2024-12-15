@@ -55,6 +55,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+
     //Retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -72,6 +74,10 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
 
     //Test
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testImplementation("org.mockito:mockito-core:3.7.7")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
 
     implementation("androidx.arch.core:core-testing:2.2.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")

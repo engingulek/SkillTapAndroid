@@ -23,21 +23,11 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel(),HomeViewModelInterface {
     private var _uiState = MutableLiveData(HomeContract.UiState())
     override var uiState : LiveData<HomeContract.UiState> = _uiState
-    private  var categoryList : List<Category> = emptyList()
+
 
     init {
-        setUiState()
-        fetchData()
-    }
 
-    private fun setUiState(){
-        //TODO: string value
-        _uiState.value = HomeContract.UiState(
-            title = R.string.hi,
-            subTitle = R.string.homeSubTittle,
-            searchbarPlaceHolder = R.string.searchPlaceholder,
-            categoryTitle = R.string.categories
-        )
+        fetchData()
     }
 
 
@@ -49,9 +39,15 @@ class HomeViewModel @Inject constructor(
     private  fun fetchCategories(){
         viewModelScope.launch {
             service.fetchAllCategories()
-            val list = service.getAllCategories()
+            val item = service.getAllCategories()
             _uiState.value = _uiState.value?.copy(
-                categoryList = list
+                title = R.string.hi,
+                subTitle = R.string.homeSubTittle,
+                searchbarPlaceHolder = R.string.searchPlaceholder,
+                categoryTitle = R.string.categories,
+                categoryList = item.first,
+                errorState = item.second,
+                errorMessage = if(item.second) R.string.errorMessage else R.string.empty
             )
         }
     }

@@ -6,29 +6,29 @@ import javax.inject.Inject
 
 interface HomeServiceInterface {
     suspend  fun fetchAllCategories()
-    suspend fun getAllCategories() : List<Category>
+    suspend fun getAllCategories() : Pair<List<Category>,Boolean>
 }
 
 class HomeService @Inject constructor(private val apiService: ApiService) : HomeServiceInterface {
-    private var categoryList : List<Category> = emptyList()
+    private var categoryList : Pair<List<Category>,Boolean> = Pair(emptyList(),false)
     override suspend fun fetchAllCategories() {
         try {
             val response = apiService.getAllCategories()
             if (response.isSuccessful){
                 val list = response.body()
-                list?.let {
-                    categoryList = it
-                }
+                categoryList = list?.let {
+                    Pair(it, false)
+                } ?: Pair(emptyList(), true)
             }else{
-                categoryList = emptyList()
+                categoryList = Pair(emptyList(), true)
             }
         }catch (t:Throwable){
-            categoryList = emptyList()
-            Log.e("Category List Error","${t.message}")
+            categoryList = Pair(emptyList(), true)
+
         }
     }
 
-    override suspend fun getAllCategories(): List<Category> {
+    override suspend fun getAllCategories(): Pair<List<Category>,Boolean> {
         return  categoryList
     }
 

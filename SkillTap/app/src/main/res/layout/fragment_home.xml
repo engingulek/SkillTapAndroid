@@ -12,6 +12,7 @@
         <variable
             name="categoryAdapter"
             type="com.example.skilltap.ui.home.adapters.CategoryAdapter" />
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -115,6 +116,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/titleTxt"
             app:srcCompat="@drawable/message_icon" />
+
+        <TextView
+            android:id="@+id/errorMessageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{uiState.errorMessage}"
+            android:visibility="@{uiState.errorState ? View.VISIBLE : View.GONE}"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

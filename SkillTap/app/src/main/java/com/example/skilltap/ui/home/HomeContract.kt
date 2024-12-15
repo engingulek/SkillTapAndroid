@@ -9,7 +9,9 @@ object HomeContract {
         var subTitle:Int = R.string.empty,
         var searchbarPlaceHolder:Int = R.string.empty,
         var categoryTitle:Int = R.string.empty,
-        var categoryList:List<Category> = emptyList()
+        var categoryList:List<Category> = emptyList(),
+        var errorState : Boolean = false,
+        var errorMessage : Int = R.string.message
     )
 
 }
