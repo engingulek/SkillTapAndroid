@@ -20,6 +20,9 @@
     <string name="homeSubTittle">What you are looking for is here</string>
     <string name="categories">Categories</string>
     <string name="errorMessage">Something went wrong</string>
+    <!--TODO: These will be removed on end of project -->
+    <string name="erorroTetst">Advert Error</string>
+    <string name="erorroTest1">Freelancer Error</string>
 
 
 </resources>

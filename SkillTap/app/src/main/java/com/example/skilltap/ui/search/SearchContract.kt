@@ -9,6 +9,7 @@ object SearchContract {
 
     data class UiState(
         var searchbarPlaceHolder:Int = R.string.empty,
+
         )
 
     sealed interface UiAction {
@@ -30,13 +31,13 @@ object SearchContract {
     data class AdvertDataState (
         var list : List<Advert> = emptyList(),
         var errorState : Boolean = false,
-        var errorMessage : Int = R.string.empty
+        var message : Int = R.string.empty
     )
 
     data class FreelancerDataState (
         var list : List<Freelancer> = emptyList(),
         var errorState : Boolean = false,
-        var errorMessage : Int = R.string.empty
+        var message : Int = R.string.empty
     )
 
 

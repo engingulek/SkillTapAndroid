@@ -23,6 +23,17 @@
             name="freelancerButtonState"
             type="com.example.skilltap.ui.search.SearchContract.FreelancerButtonState" />
 
+
+        <variable
+            name="advertDataState"
+            type="com.example.skilltap.ui.search.SearchContract.AdvertDataState" />
+
+        <variable
+            name="freelancerDataState"
+            type="com.example.skilltap.ui.search.SearchContract.FreelancerDataState" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -115,6 +126,35 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/advertsBttn" />
+
+        <TextView
+            android:id="@+id/advertMessageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@{advertDataState.message}"
+            app:layout_constraintBottom_toBottomOf="@+id/listRv"
+            android:visibility="@{(advertDataState.errorState == true) == (advertButtonState.selected == true) ? View.VISIBLE : View.GONE}"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/freelancerMessageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@{freelancerDataState.message}"
+            android:visibility="@{(freelancerDataState.errorState == true) == (freelancerButtonState.selected == true) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>

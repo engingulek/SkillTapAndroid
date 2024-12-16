@@ -41,11 +41,13 @@ class SearchFragment : Fragment() {
         viewModel.advertDataState.observe(viewLifecycleOwner){
             val advertAdapter = AdvertAdapter(requireContext(),it.list)
             design.advertAdapter = advertAdapter
+            design.advertDataState = it
         }
 
         viewModel.freelancerDataState.observe(viewLifecycleOwner){
             val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
             design.freelancerAdapter = freelancerAdapter
+            design.freelancerDataState = it
         }
 
 

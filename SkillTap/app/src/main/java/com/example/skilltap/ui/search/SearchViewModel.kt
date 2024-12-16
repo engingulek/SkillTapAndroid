@@ -73,9 +73,11 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
             _advertDataState.value = SearchContract.AdvertDataState(
                 list = item.first,
                 errorState = item.second,
-                errorMessage = if (item.second) R.string.errorMessage
+                message =  if (item.second) R.string.errorMessage
                 else R.string.empty
             )
+
+
         }
     }
 
@@ -87,9 +89,10 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
             _freelancerDataState.value = SearchContract.FreelancerDataState(
                 list = item.first,
                 errorState = item.second,
-                errorMessage = if (item.second) R.string.errorMessage
+                message = if (item.second) R.string.errorMessage
                 else R.string.empty
             )
+
         }
     }
 
