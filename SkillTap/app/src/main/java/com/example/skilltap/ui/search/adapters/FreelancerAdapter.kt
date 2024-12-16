@@ -10,9 +10,14 @@ import com.example.skilltap.R
 import com.example.skilltap.databinding.AdvertAdapterDesignBinding
 import com.example.skilltap.databinding.FreelancerAdapterDesingBinding
 import com.example.skilltap.ui.search.SearchFragmentDirections
+import com.example.skilltap.ui.search.models.Freelancer
+import com.example.skilltap.utils.PicassoImage
 import com.example.skilltap.utils.toFragment
 
-class FreelancerAdapter(var mContext: Context)
+class FreelancerAdapter(
+    var mContext: Context,
+    var list : List<Freelancer>
+    )
     : RecyclerView.Adapter<FreelancerAdapter.FreelancerAdapterKeeper>() {
         inner  class FreelancerAdapterKeeper(var design:FreelancerAdapterDesingBinding)
             :RecyclerView.ViewHolder(design.root){}
@@ -30,11 +35,16 @@ class FreelancerAdapter(var mContext: Context)
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.size
     }
 
     override fun onBindViewHolder(holder: FreelancerAdapterKeeper, position: Int) {
-        holder.design.nameSurnmaTxt.text = "Name Surname"
+        val freelancer = list[position]
+        PicassoImage.covertToPicasso(freelancer.imageURL,holder.design.shapeableImageView)
+        holder.design.nameSurnmaTxt.text = freelancer.title
+        holder.design.workTxt.text = freelancer.subTitle
+        holder.design.descTxt.text = freelancer.detail
+        holder.design.ratingTxt.text = "${freelancer.rating}"
         holder.design.freelancerCardView.setOnClickListener {
             val nav = SearchFragmentDirections.toFreelancerDetail()
             Navigation.toFragment(it,nav)

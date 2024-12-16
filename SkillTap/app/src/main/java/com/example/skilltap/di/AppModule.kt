@@ -3,6 +3,8 @@ package com.example.skilltap.di
 import com.example.skilltap.retrofit.ApiService
 import com.example.skilltap.ui.home.HomeService
 import com.example.skilltap.ui.home.HomeServiceInterface
+import com.example.skilltap.ui.search.SearchService
+import com.example.skilltap.ui.search.SearchServiceInterface
 import com.example.skilltap.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -29,5 +31,12 @@ class AppModule {
     @Singleton
     fun provideHomeService(apiService: ApiService) : HomeServiceInterface {
         return  HomeService(apiService)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideSearchService(apiService: ApiService) : SearchServiceInterface {
+        return  SearchService(apiService)
     }
 }

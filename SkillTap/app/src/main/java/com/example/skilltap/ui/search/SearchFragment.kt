@@ -15,7 +15,9 @@ import com.example.skilltap.ui.home.HomeViewModel
 import com.example.skilltap.ui.home.HomeViewModelInterface
 import com.example.skilltap.ui.search.adapters.AdvertAdapter
 import com.example.skilltap.ui.search.adapters.FreelancerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
     private lateinit var design:FragmentSearchBinding
     private lateinit var viewModel: SearchViewModelInterface
@@ -36,10 +38,18 @@ class SearchFragment : Fragment() {
 
         design.listRv.layoutManager =  LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
-        val freelancerAdapter = FreelancerAdapter(requireContext())
-        val advertAdapter = AdvertAdapter(requireContext())
-        design.advertAdapter = advertAdapter
-        design.freelancerAdapter = freelancerAdapter
+        viewModel.advertDataState.observe(viewLifecycleOwner){
+            val advertAdapter = AdvertAdapter(requireContext(),it.list)
+            design.advertAdapter = advertAdapter
+        }
+
+        viewModel.freelancerDataState.observe(viewLifecycleOwner){
+            val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
+            design.freelancerAdapter = freelancerAdapter
+        }
+
+
+
 
         return  design.root
     }
