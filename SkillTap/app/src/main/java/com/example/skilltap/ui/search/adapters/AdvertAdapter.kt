@@ -1,8 +1,10 @@
 package com.example.skilltap.ui.search.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.runtime.Composable
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -49,6 +51,11 @@ class AdvertAdapter(
             val nav = SearchFragmentDirections.toAdvertDetail()
             Navigation.toFragment(it,nav)
         }
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    @Composable
+    fun realoadAdapter(){
+        notifyDataSetChanged()
     }
 }

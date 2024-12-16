@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.skilltap.R
 import com.example.skilltap.ui.home.HomeContract
+import com.example.skilltap.ui.search.models.Advert
+import com.example.skilltap.ui.search.models.Freelancer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,6 +40,9 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
 
     private  var _freelancerDataState = MutableLiveData(SearchContract.FreelancerDataState())
     override var freelancerDataState : LiveData<SearchContract.FreelancerDataState> = _freelancerDataState
+
+    private  var tempAdvertList :List<Advert> = emptyList()
+    private  var tempFreelancerList : List<Freelancer> = emptyList()
     init {
         setUiState()
         fetchData()
@@ -70,9 +75,10 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
         viewModelScope.launch {
             service.fetchAllAdverts()
             val item = service.getAllAdverts()
+            tempAdvertList = item.first
             _advertDataState.value = SearchContract.AdvertDataState(
                 list = item.first,
-                errorState = item.second,
+                messageState = item.second,
                 message =  if (item.second) R.string.errorMessage
                 else R.string.empty
             )
@@ -86,9 +92,10 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
         viewModelScope.launch {
             service.fetchAllFreelancers()
             val item = service.getAllFreelancer()
+            tempFreelancerList = item.first
             _freelancerDataState.value = SearchContract.FreelancerDataState(
                 list = item.first,
-                errorState = item.second,
+                messageState = item.second,
                 message = if (item.second) R.string.errorMessage
                 else R.string.empty
             )
@@ -100,6 +107,7 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
         when (action){
             SearchContract.UiAction.clickedAdvertsBttn -> onClickedAdvertsBttn()
             SearchContract.UiAction.clickedFreelancerBttn -> onClickedFreelancerBttn()
+            is SearchContract.UiAction.searchViewOnQueryTextListener -> searchList(action.text)
         }
     }
 
@@ -120,6 +128,26 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
 
         _freelancerButtonState.value = _freelancerButtonState.value?.copy(
             selected = true
+        )
+    }
+
+    private fun searchList(text:String){
+        // Detail is used for advert
+        val searchAdvertList = tempAdvertList.filter { it.detail.lowercase().contains(text.lowercase()) }
+        // Name Surname(title) is used for freelancer
+        val searchFreelancerList = tempFreelancerList.filter { it.title.lowercase().contains(text.lowercase()) }
+        _advertDataState.value = _advertDataState.value?.copy(
+            list =  if (text.isEmpty()) tempAdvertList else searchAdvertList,
+            messageState = searchAdvertList.isEmpty(),
+            message = if(searchAdvertList.isEmpty()) R.string.notFoundAdvert else R.string.empty
+
+        )
+
+        _freelancerDataState.value = _freelancerDataState.value?.copy(
+            list = if (text.isEmpty()) tempFreelancerList else searchFreelancerList,
+            messageState = searchFreelancerList.isEmpty(),
+            message =   if(searchFreelancerList.isEmpty()) R.string.notFoundFreelancer else R.string.empty
+
         )
     }
 }

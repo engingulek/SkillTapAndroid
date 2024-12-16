@@ -15,6 +15,8 @@ object SearchContract {
     sealed interface UiAction {
         data object clickedAdvertsBttn:UiAction
         data object clickedFreelancerBttn:UiAction
+        data class searchViewOnQueryTextListener(val text:String):UiAction
+
     }
 
     data class AdvertButtonState(
@@ -30,13 +32,13 @@ object SearchContract {
 
     data class AdvertDataState (
         var list : List<Advert> = emptyList(),
-        var errorState : Boolean = false,
+        var messageState : Boolean = false,
         var message : Int = R.string.empty
     )
 
     data class FreelancerDataState (
         var list : List<Freelancer> = emptyList(),
-        var errorState : Boolean = false,
+        var messageState : Boolean = false,
         var message : Int = R.string.empty
     )
 
