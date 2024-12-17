@@ -12,6 +12,20 @@ object AdvertDetailContract {
         var thirdOptionTitle:Int = R.string.empty
     )
 
+
+    data class AdvertDetailState(
+       var advertDetail:AdvertDetail? = null,
+        var errorState:Boolean = true,
+        var message:Int = R.string.empty
+    )
+
+    data class PackageIncludeState(
+        var tite:String = "",
+        var desc:String = "",
+        var price:String = ""
+    )
+
+
    /* data class OptionType(
         var title:Int = R.string.empty,
         var checked:Boolean = false

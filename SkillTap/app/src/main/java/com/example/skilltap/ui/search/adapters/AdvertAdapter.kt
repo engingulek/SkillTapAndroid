@@ -48,7 +48,7 @@ class AdvertAdapter(
         holder.design.priceTxt.text = "${advert.price} Tl"
         holder.design.detailTxt.text = advert.detail
         holder.design.advertCardView.setOnClickListener {
-            val nav = SearchFragmentDirections.toAdvertDetail()
+            val nav = SearchFragmentDirections.toAdvertDetail(advert.id)
             Navigation.toFragment(it,nav)
         }
     }

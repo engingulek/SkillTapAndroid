@@ -37,7 +37,7 @@ class OwnerAdvertAdapter(var mContext: Context)
     override fun onBindViewHolder(holder: OwnerAdapterDesignKeeper, position: Int) {
         holder.design.titleTxt.text = "Test Title"
         holder.design.advertCardView.setOnClickListener {
-            val nav = SearchFragmentDirections.toAdvertDetail()
+            val nav = SearchFragmentDirections.toAdvertDetail(3)
             Navigation.toFragment(it,nav)
         }
     }

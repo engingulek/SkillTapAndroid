@@ -35,6 +35,7 @@ class SearchFragment : Fragment() {
             container,
             false)
 
+
         onCreateViewActions()
 
         buttonsActions()

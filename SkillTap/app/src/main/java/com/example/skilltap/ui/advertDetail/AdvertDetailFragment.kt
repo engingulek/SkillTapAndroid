@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentAdvertDetailBinding
+import com.example.skilltap.utils.PicassoImage
 import com.example.skilltap.utils.toFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdvertDetailFragment : Fragment() {
     private lateinit var design:FragmentAdvertDetailBinding
     private lateinit var viewModel:AdvertDetailViewModelInterface
@@ -21,12 +25,44 @@ class AdvertDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_advert_detail, container, false)
+        val bundle :  AdvertDetailFragmentArgs by navArgs()
+        val id = bundle.id
+
+        viewModel.getAdvertId(id)
+
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
         }
+        viewModel.advertDetailState.observe(viewLifecycleOwner){
+            design.advertDetailState = it
+            //TODO: Review
+            it.advertDetail?.let {advertDetail ->
+                PicassoImage.covertToPicasso(advertDetail.image,design.baseImage)
+                PicassoImage.covertToPicasso(advertDetail.freelancer.imageURL,design.advertOwnerImageView)
+            }
+
+        }
+
+
+        viewModel.packageIncludeState.observe(viewLifecycleOwner){
+            design.packageState = it
+        }
+
+        viewModel.getAdvertId(3);
 
         design.radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            viewModel.onAction(AdvertDetailContract.UiAction.clicledRadionButton(checkedId))
+            when(checkedId) {
+                R.id.firstOptionId -> {
+                    viewModel.onAction(AdvertDetailContract.UiAction.clicledRadionButton(0))
+                }
+                R.id.secondOptionId -> {
+                    viewModel.onAction(AdvertDetailContract.UiAction.clicledRadionButton(1))
+                }
+                R.id.thirdOptionId-> {
+                    viewModel.onAction(AdvertDetailContract.UiAction.clicledRadionButton(2))
+                }
+            }
+
         }
 
         design.sendMessageButton.setOnClickListener {

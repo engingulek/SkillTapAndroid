@@ -1,6 +1,8 @@
 package com.example.skilltap.di
 
 import com.example.skilltap.retrofit.ApiService
+import com.example.skilltap.ui.advertDetail.AdvertDetailService
+import com.example.skilltap.ui.advertDetail.AdvertDetailServiceInterface
 import com.example.skilltap.ui.home.HomeService
 import com.example.skilltap.ui.home.HomeServiceInterface
 import com.example.skilltap.ui.search.SearchService
@@ -38,5 +40,12 @@ class AppModule {
     @Singleton
     fun provideSearchService(apiService: ApiService) : SearchServiceInterface {
         return  SearchService(apiService)
+    }
+
+    @Provides
+    @Singleton
+
+    fun provideAdvertDetailService(apiService: ApiService) : AdvertDetailServiceInterface {
+        return  AdvertDetailService(apiService)
     }
 }
