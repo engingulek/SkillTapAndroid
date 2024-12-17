@@ -46,7 +46,7 @@ class FreelancerAdapter(
         holder.design.descTxt.text = freelancer.detail
         holder.design.ratingTxt.text = "${freelancer.rating}"
         holder.design.freelancerCardView.setOnClickListener {
-            val nav = SearchFragmentDirections.toFreelancerDetail()
+            val nav = SearchFragmentDirections.toFreelancerDetail(freelancer.id)
             Navigation.toFragment(it,nav)
         }
     }

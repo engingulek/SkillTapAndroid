@@ -45,7 +45,7 @@ class AdvertAdapter(
         val advert = list[position]
         PicassoImage.covertToPicasso(advert.imageURL,holder.design.advertImage)
         holder.design.titleTxt.text = advert.title
-        holder.design.priceTxt.text = "${advert.price} Tl"
+        holder.design.priceTxt.text = " Start ${advert.price} Tl"
         holder.design.detailTxt.text = advert.detail
         holder.design.advertCardView.setOnClickListener {
             val nav = SearchFragmentDirections.toAdvertDetail(advert.id)

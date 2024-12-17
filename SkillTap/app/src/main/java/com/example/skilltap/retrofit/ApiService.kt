@@ -1,6 +1,7 @@
 package com.example.skilltap.retrofit
 
 import com.example.skilltap.ui.advertDetail.AdvertDetail
+import com.example.skilltap.ui.freelancerDetail.FreelancerDetail
 import com.example.skilltap.ui.home.Category
 import com.example.skilltap.ui.search.models.Advert
 import com.example.skilltap.ui.search.models.Freelancer
@@ -20,4 +21,7 @@ interface ApiService {
 
     @GET("adverts/advertDetail")
     suspend fun getAdvertDetail(@Query("id") id:Int) : Response<AdvertDetail>
+
+    @GET("freelancer/getFreelancerDetail")
+    suspend fun getFreelancerDetail(@Query("id") id:Int) : Response<FreelancerDetail>
 }

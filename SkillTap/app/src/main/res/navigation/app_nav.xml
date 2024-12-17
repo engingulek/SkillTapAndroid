@@ -57,7 +57,11 @@
         android:id="@+id/freelancerDetailFragment"
         android:name="com.example.skilltap.ui.freelancerDetail.FreelancerDetailFragment"
         android:label="fragment_freelancer_detail"
-        tools:layout="@layout/fragment_freelancer_detail" />
+        tools:layout="@layout/fragment_freelancer_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/lastMessageListFragment"
         android:name="com.example.skilltap.ui.lastmessagelist.LastMessageListFragment"

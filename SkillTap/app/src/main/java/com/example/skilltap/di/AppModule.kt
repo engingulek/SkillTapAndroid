@@ -3,6 +3,9 @@ package com.example.skilltap.di
 import com.example.skilltap.retrofit.ApiService
 import com.example.skilltap.ui.advertDetail.AdvertDetailService
 import com.example.skilltap.ui.advertDetail.AdvertDetailServiceInterface
+import com.example.skilltap.ui.freelancerDetail.FreelancerDetailContract
+import com.example.skilltap.ui.freelancerDetail.FreelancerDetailService
+import com.example.skilltap.ui.freelancerDetail.FreelancerDetailServiceInterface
 import com.example.skilltap.ui.home.HomeService
 import com.example.skilltap.ui.home.HomeServiceInterface
 import com.example.skilltap.ui.search.SearchService
@@ -44,8 +47,14 @@ class AppModule {
 
     @Provides
     @Singleton
-
     fun provideAdvertDetailService(apiService: ApiService) : AdvertDetailServiceInterface {
         return  AdvertDetailService(apiService)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideFreelancerDetailService(apiService: ApiService) : FreelancerDetailServiceInterface {
+        return  FreelancerDetailService(apiService)
     }
 }

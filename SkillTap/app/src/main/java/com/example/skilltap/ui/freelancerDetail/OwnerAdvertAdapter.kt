@@ -9,9 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.skilltap.R
 import com.example.skilltap.databinding.AdvertAdapterDesignBinding
 import com.example.skilltap.ui.search.SearchFragmentDirections
+import com.example.skilltap.ui.search.models.Advert
+import com.example.skilltap.utils.PicassoImage
 import com.example.skilltap.utils.toFragment
 
-class OwnerAdvertAdapter(var mContext: Context)
+class OwnerAdvertAdapter(
+    var mContext: Context,
+    var list : List<Advert>
+)
     :RecyclerView.Adapter<OwnerAdvertAdapter.OwnerAdapterDesignKeeper>(){
         inner class OwnerAdapterDesignKeeper(var design : AdvertAdapterDesignBinding)
             :RecyclerView.ViewHolder(design.root){
@@ -31,11 +36,16 @@ class OwnerAdvertAdapter(var mContext: Context)
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.size
     }
 
     override fun onBindViewHolder(holder: OwnerAdapterDesignKeeper, position: Int) {
-        holder.design.titleTxt.text = "Test Title"
+        val advert = list[position]
+        PicassoImage.covertToPicasso(advert.imageURL,holder.design.advertImage)
+        holder.design.titleTxt.text = advert.title
+        holder.design.priceTxt.text = "Start ${advert.price} ₺"
+        holder.design.detailTxt.text = advert.detail
+
         holder.design.advertCardView.setOnClickListener {
             val nav = SearchFragmentDirections.toAdvertDetail(3)
             Navigation.toFragment(it,nav)
