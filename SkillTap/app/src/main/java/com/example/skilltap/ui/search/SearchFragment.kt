@@ -8,8 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentSearchBinding
@@ -24,7 +28,7 @@ class SearchFragment : Fragment() {
     private lateinit var design:FragmentSearchBinding
     private lateinit var viewModel: SearchViewModelInterface
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,27 +40,13 @@ class SearchFragment : Fragment() {
             false)
 
 
-        onCreateViewActions()
+        onCreateViewModelActions()
 
         buttonsActions()
 
 
-        design.listRv.layoutManager =  LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
-        viewModel.advertDataState.observe(viewLifecycleOwner){
-            val advertAdapter = AdvertAdapter(requireContext(),it.list)
-            design.advertAdapter = advertAdapter
-            design.advertDataState = it
-
-            advertAdapter.notifyDataSetChanged()
-        }
-
-        viewModel.freelancerDataState.observe(viewLifecycleOwner){
-            val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
-            design.freelancerAdapter = freelancerAdapter
-            design.freelancerDataState = it
-            freelancerAdapter.notifyDataSetChanged()
-        }
+        design.listRv.layoutManager =  LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL,false)
 
         design.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -76,10 +66,6 @@ class SearchFragment : Fragment() {
             }
 
         })
-
-
-
-
 
         return  design.root
     }
@@ -101,9 +87,22 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun onCreateViewActions(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onCreateViewModelActions(){
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
+            (activity as? AppCompatActivity)?.supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(it.navigationState)
+                title = getString(it.navTitle)
+                setHomeAsUpIndicator(R.drawable.navgation_back)
+            }
+
+            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setNavigationOnClickListener {
+
+                findNavController().popBackStack()
+            }
+
         }
 
         viewModel.advertsButtonsState.observe(viewLifecycleOwner){
@@ -114,8 +113,22 @@ class SearchFragment : Fragment() {
             design.freelancerButtonState = it
         }
 
-    }
+        viewModel.advertDataState.observe(viewLifecycleOwner){
+            val advertAdapter = AdvertAdapter(requireContext(),it.list)
+            design.advertAdapter = advertAdapter
+            design.advertDataState = it
 
+            advertAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.freelancerDataState.observe(viewLifecycleOwner){
+            val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
+            design.freelancerAdapter = freelancerAdapter
+            design.freelancerDataState = it
+            freelancerAdapter.notifyDataSetChanged()
+        }
+
+    }
 
 
 }

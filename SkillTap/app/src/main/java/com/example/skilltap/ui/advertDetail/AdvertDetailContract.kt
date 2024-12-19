@@ -9,7 +9,9 @@ object AdvertDetailContract {
         var advertDescTitle:Int = R.string.empty,
         var firstOptionTitle:Int = R.string.empty,
         var secondOptionTitle:Int = R.string.empty,
-        var thirdOptionTitle:Int = R.string.empty
+        var thirdOptionTitle:Int = R.string.empty,
+        var navigationState:Boolean = false,
+        var navTitle:Int = R.string.empty
     )
 
 
@@ -24,12 +26,6 @@ object AdvertDetailContract {
         var desc:String = "",
         var price:String = ""
     )
-
-
-   /* data class OptionType(
-        var title:Int = R.string.empty,
-        var checked:Boolean = false
-    )*/
 
     sealed interface UiAction {
         data class clicledRadionButton(val index:Int) : UiAction

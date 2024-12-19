@@ -37,6 +37,9 @@ class HomeViewModel @Inject constructor(
 
     // fetch categories
     private  fun fetchCategories(){
+        _uiState.value = _uiState.value?.copy(
+            loadingAction = true
+        )
         viewModelScope.launch {
             service.fetchAllCategories()
             val item = service.getAllCategories()
@@ -47,7 +50,10 @@ class HomeViewModel @Inject constructor(
                 categoryTitle = R.string.categories,
                 categoryList = item.first,
                 errorState = item.second,
-                errorMessage = if(item.second) R.string.errorMessage else R.string.empty
+                errorMessage = if(item.second) R.string.errorMessage else R.string.empty,
+                loadingAction = false,
+                navigationState = false,
+                navTitle = R.string.homeNav
             )
         }
     }

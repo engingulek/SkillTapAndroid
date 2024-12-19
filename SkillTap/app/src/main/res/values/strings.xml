@@ -22,6 +22,10 @@
     <string name="errorMessage">Something went wrong</string>
     <string name="notFoundAdvert">Advert not found</string>
     <string name="notFoundFreelancer">Freelancer not found</string>
+    <string name="homeNav">Home</string>
+    <string name="searchNav">Search</string>
+    <string name="freelancerDetailNav">Freelancer Detail</string>
+    <string name="advertDetailNav">Advert Detail</string>
   
 
 

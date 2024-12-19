@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skilltap.R
@@ -29,14 +32,25 @@ class FreelancerDetailFragment : Fragment() {
         val id = bundle.id
         viewModel.getFreelancerDetail(id)
 
+        viewModelActions()
+        design.ownerAdvertsRv.layoutManager =  LinearLayoutManager(requireContext(),
+            LinearLayoutManager.HORIZONTAL,false)
+        return design.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : FreelancerDetailViewModelInterface by viewModels<FreelancerDetailViewModel>()
+        viewModel = tempViewModel
+    }
 
 
-
-
-
-
+    private  fun viewModelActions(){
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
+            toolbarNavigation(it.navigationState,it.navTitle)
+
+
         }
         viewModel.freelancerDetailState.observe(viewLifecycleOwner){
             design.freelancerDetailState = it
@@ -48,22 +62,24 @@ class FreelancerDetailFragment : Fragment() {
                 val ownerAdvertAdapter = OwnerAdvertAdapter(requireContext(),adverts)
                 design.ownerAdvertAdapter = ownerAdvertAdapter
 
-
             }
-
-
-
-
         }
-        design.ownerAdvertsRv.layoutManager =  LinearLayoutManager(requireContext(),
-            LinearLayoutManager.HORIZONTAL,false)
-        return design.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel : FreelancerDetailViewModelInterface by viewModels<FreelancerDetailViewModel>()
-        viewModel = tempViewModel
+
+    private  fun toolbarNavigation(state:Boolean,navTitle:Int){
+        (activity as? AppCompatActivity)?.supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(state)
+            title = getString(navTitle)
+            setHomeAsUpIndicator(R.drawable.navgation_back)
+        }
+
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+
+            findNavController().popBackStack()
+        }
     }
+
 
 }

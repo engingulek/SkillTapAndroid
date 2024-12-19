@@ -88,6 +88,11 @@ class HomeViewModelTest {
             R.string.empty,
             uiState.errorMessage)
 
+        assertFalse(uiState.navigationState)
+        assertEquals("The navTitle is not correct Expected: ''(empty) ",
+            R.string.homeNav,
+            uiState.navTitle)
+
 
     }
 

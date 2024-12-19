@@ -9,7 +9,9 @@ interface HomeServiceInterface {
     suspend fun getAllCategories() : Pair<List<Category>,Boolean>
 }
 
-class HomeService @Inject constructor(private val apiService: ApiService) : HomeServiceInterface {
+class HomeService @Inject constructor(
+    private val apiService: ApiService
+) : HomeServiceInterface {
     private var categoryList : Pair<List<Category>,Boolean> = Pair(emptyList(),false)
     override suspend fun fetchAllCategories() {
         try {
