@@ -94,6 +94,7 @@ class SearchFragment : Fragment() {
             (activity as? AppCompatActivity)?.supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(it.navigationState)
                 title = getString(it.navTitle)
+                setHomeAsUpIndicator(R.drawable.navgation_back)
             }
 
             val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)

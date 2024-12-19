@@ -95,6 +95,7 @@ class AdvertDetailFragment : Fragment() {
         (activity as? AppCompatActivity)?.supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(state)
             title = getString(navTitle)
+            setHomeAsUpIndicator(R.drawable.navgation_back)
         }
 
         val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
