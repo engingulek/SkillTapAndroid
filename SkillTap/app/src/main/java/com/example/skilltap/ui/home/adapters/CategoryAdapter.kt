@@ -52,9 +52,6 @@ class CategoryAdapter(
         holder.design.advertsCountTxt.text = "${category.advertCount} Adverts"
         PicassoImage.covertToPicasso(category.imageUrl,holder.design.categoryImage)
         holder.design.categoryConstraintLayout.setBackgroundColor(Color.parseColor(category.colorCode))
-        holder.design.categoryCardView.setOnClickListener{
-            val nav = HomeFragmentDirections.fromHomeToSubCategory(1)
-            Navigation.toFragment(it,nav)
-        }
+
     }
 }

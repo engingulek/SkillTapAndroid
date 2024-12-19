@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skilltap.R
 import com.example.skilltap.databinding.BubbleMessageDesinBinding
-import com.example.skilltap.databinding.SubCategoryDesignBinding
+
 
 class MessageAdapter(
     var mContext: Context,
