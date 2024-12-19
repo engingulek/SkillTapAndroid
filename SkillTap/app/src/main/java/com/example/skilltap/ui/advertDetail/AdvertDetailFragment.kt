@@ -43,12 +43,11 @@ class AdvertDetailFragment : Fragment() {
 
         }
 
-
         viewModel.packageIncludeState.observe(viewLifecycleOwner){
             design.packageState = it
         }
 
-        viewModel.getAdvertId(3);
+        viewModel.getAdvertId(id);
 
         design.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId) {
@@ -73,18 +72,9 @@ class AdvertDetailFragment : Fragment() {
         return  design.root
     }
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel : AdvertDetailViewModelInterface by viewModels<AdvertDetailViewModel>()
         viewModel = tempViewModel
-
-
-
     }
-
-
-
 }

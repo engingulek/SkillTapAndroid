@@ -24,7 +24,7 @@ class SearchFragment : Fragment() {
     private lateinit var design:FragmentSearchBinding
     private lateinit var viewModel: SearchViewModelInterface
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,27 +36,13 @@ class SearchFragment : Fragment() {
             false)
 
 
-        onCreateViewActions()
+        onCreateViewModelActions()
 
         buttonsActions()
 
 
-        design.listRv.layoutManager =  LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
-        viewModel.advertDataState.observe(viewLifecycleOwner){
-            val advertAdapter = AdvertAdapter(requireContext(),it.list)
-            design.advertAdapter = advertAdapter
-            design.advertDataState = it
-
-            advertAdapter.notifyDataSetChanged()
-        }
-
-        viewModel.freelancerDataState.observe(viewLifecycleOwner){
-            val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
-            design.freelancerAdapter = freelancerAdapter
-            design.freelancerDataState = it
-            freelancerAdapter.notifyDataSetChanged()
-        }
+        design.listRv.layoutManager =  LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL,false)
 
         design.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -76,10 +62,6 @@ class SearchFragment : Fragment() {
             }
 
         })
-
-
-
-
 
         return  design.root
     }
@@ -101,7 +83,8 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun onCreateViewActions(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun onCreateViewModelActions(){
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
         }
@@ -114,8 +97,20 @@ class SearchFragment : Fragment() {
             design.freelancerButtonState = it
         }
 
+        viewModel.advertDataState.observe(viewLifecycleOwner){
+            val advertAdapter = AdvertAdapter(requireContext(),it.list)
+            design.advertAdapter = advertAdapter
+            design.advertDataState = it
+
+            advertAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.freelancerDataState.observe(viewLifecycleOwner){
+            val freelancerAdapter = FreelancerAdapter(requireContext(),it.list)
+            design.freelancerAdapter = freelancerAdapter
+            design.freelancerDataState = it
+            freelancerAdapter.notifyDataSetChanged()
+        }
+
     }
-
-
-
 }

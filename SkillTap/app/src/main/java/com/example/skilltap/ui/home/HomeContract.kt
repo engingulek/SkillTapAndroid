@@ -11,7 +11,7 @@ object HomeContract {
         var categoryTitle:Int = R.string.empty,
         var categoryList:List<Category> = emptyList(),
         var errorState : Boolean = false,
-        var errorMessage : Int = R.string.message
+        var errorMessage : Int = R.string.message,
+        var loadingAction : Boolean = false
     )
-
 }

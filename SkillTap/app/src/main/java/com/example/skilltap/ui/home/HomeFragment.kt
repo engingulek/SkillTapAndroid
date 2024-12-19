@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentHomeBinding
-import com.example.skilltap.ui.home.adapters.CategoryAdapter
 import com.example.skilltap.utils.toFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,9 +25,9 @@ class HomeFragment : Fragment() {
     ): View? {
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
         design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
-
             val categoryAdapter = CategoryAdapter(requireContext(),it.categoryList)
             design.categoryAdapter = categoryAdapter
 

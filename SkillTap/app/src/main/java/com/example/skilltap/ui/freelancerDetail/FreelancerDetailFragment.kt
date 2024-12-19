@@ -30,11 +30,6 @@ class FreelancerDetailFragment : Fragment() {
         viewModel.getFreelancerDetail(id)
 
 
-
-
-
-
-
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
         }
@@ -48,12 +43,7 @@ class FreelancerDetailFragment : Fragment() {
                 val ownerAdvertAdapter = OwnerAdvertAdapter(requireContext(),adverts)
                 design.ownerAdvertAdapter = ownerAdvertAdapter
 
-
             }
-
-
-
-
         }
         design.ownerAdvertsRv.layoutManager =  LinearLayoutManager(requireContext(),
             LinearLayoutManager.HORIZONTAL,false)

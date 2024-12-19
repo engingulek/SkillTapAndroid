@@ -82,8 +82,6 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
                 message =  if (item.second) R.string.errorMessage
                 else R.string.empty
             )
-
-
         }
     }
 

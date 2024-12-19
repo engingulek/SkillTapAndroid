@@ -25,12 +25,6 @@ object AdvertDetailContract {
         var price:String = ""
     )
 
-
-   /* data class OptionType(
-        var title:Int = R.string.empty,
-        var checked:Boolean = false
-    )*/
-
     sealed interface UiAction {
         data class clicledRadionButton(val index:Int) : UiAction
     }
