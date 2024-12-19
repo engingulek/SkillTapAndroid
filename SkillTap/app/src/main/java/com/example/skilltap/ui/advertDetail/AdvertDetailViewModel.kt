@@ -49,7 +49,9 @@ class AdvertDetailViewModel @Inject constructor(
             advertDescTitle = R.string.desc,
             firstOptionTitle = R.string.basis,
             secondOptionTitle = R.string.standard,
-            thirdOptionTitle = R.string.pro
+            thirdOptionTitle = R.string.pro,
+            navigationState = true,
+            navTitle = R.string.advertDetailNav
         )
     }
 

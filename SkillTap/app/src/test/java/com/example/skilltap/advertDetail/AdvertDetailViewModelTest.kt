@@ -77,6 +77,11 @@ class AdvertDetailViewModelTest {
             R.string.pro,
             uiState.thirdOptionTitle)
 
+        assertEquals(
+            "nav title is not correct",
+            R.string.advertDetailNav,
+            uiState.navTitle)
+
 
     }
 

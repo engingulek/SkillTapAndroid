@@ -51,7 +51,9 @@ class HomeViewModel @Inject constructor(
                 categoryList = item.first,
                 errorState = item.second,
                 errorMessage = if(item.second) R.string.errorMessage else R.string.empty,
-                loadingAction = false
+                loadingAction = false,
+                navigationState = false,
+                navTitle = R.string.homeNav
             )
         }
     }

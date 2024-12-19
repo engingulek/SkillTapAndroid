@@ -50,7 +50,10 @@ class SearchViewModel @Inject constructor(private  var service:SearchServiceInte
 
     private fun setUiState(){
         _uiState.value = SearchContract.UiState(
-            searchbarPlaceHolder = R.string.searchPlaceholder
+            searchbarPlaceHolder = R.string.searchPlaceholder,
+            navigationState = true,
+            navTitle = R.string.searchNav
+
         )
 
         _advertsButtonsState.value = SearchContract.AdvertButtonState(

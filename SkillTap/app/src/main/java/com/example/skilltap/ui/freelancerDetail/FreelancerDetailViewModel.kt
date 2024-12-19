@@ -41,14 +41,17 @@ class FreelancerDetailViewModel @Inject constructor(
             _freelancerDetailState.value = _freelancerDetailState.value?.copy(
                 freelancerDetail = if(detail.second) null else detail.first,
                 errorState = detail.second,
-                message = if (detail.second) R.string.errorMessage else R.string.errorMessage
+                message = if (detail.second) R.string.errorMessage else R.string.errorMessage,
+
             )
         }
     }
 
     private fun firstUiState() {
         _uiState.value = FreelancerDetailContract.UiState(
-            advertsTitle = R.string.adverts
+            advertsTitle = R.string.adverts,
+            navigationState = true,
+            navTitle = R.string.freelancerDetailNav
         )
     }
 }

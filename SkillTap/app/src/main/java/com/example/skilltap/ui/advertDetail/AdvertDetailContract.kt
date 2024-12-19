@@ -9,7 +9,9 @@ object AdvertDetailContract {
         var advertDescTitle:Int = R.string.empty,
         var firstOptionTitle:Int = R.string.empty,
         var secondOptionTitle:Int = R.string.empty,
-        var thirdOptionTitle:Int = R.string.empty
+        var thirdOptionTitle:Int = R.string.empty,
+        var navigationState:Boolean = false,
+        var navTitle:Int = R.string.empty
     )
 
 

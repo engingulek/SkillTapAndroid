@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -26,10 +27,16 @@ class HomeFragment : Fragment() {
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
         design.categoryRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
+
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
             val categoryAdapter = CategoryAdapter(requireContext(),it.categoryList)
             design.categoryAdapter = categoryAdapter
+
+            (activity as? AppCompatActivity)?.supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(it.navigationState)
+                title = getString(it.navTitle)
+            }
 
         }
 

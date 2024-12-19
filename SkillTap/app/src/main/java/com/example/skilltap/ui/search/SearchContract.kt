@@ -9,6 +9,8 @@ object SearchContract {
 
     data class UiState(
         var searchbarPlaceHolder:Int = R.string.empty,
+        var navigationState:Boolean = false,
+        var navTitle:Int = R.string.empty
 
         )
 

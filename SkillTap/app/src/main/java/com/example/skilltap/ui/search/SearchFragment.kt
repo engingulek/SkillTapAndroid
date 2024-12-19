@@ -8,8 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentSearchBinding
@@ -87,6 +91,17 @@ class SearchFragment : Fragment() {
     private fun onCreateViewModelActions(){
         viewModel.uiState.observe(viewLifecycleOwner){
             design.uiState = it
+            (activity as? AppCompatActivity)?.supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(it.navigationState)
+                title = getString(it.navTitle)
+            }
+
+            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+            toolbar.setNavigationOnClickListener {
+
+                findNavController().popBackStack()
+            }
+
         }
 
         viewModel.advertsButtonsState.observe(viewLifecycleOwner){
@@ -113,4 +128,6 @@ class SearchFragment : Fragment() {
         }
 
     }
+
+
 }

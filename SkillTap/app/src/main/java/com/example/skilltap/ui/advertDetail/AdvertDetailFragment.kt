@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.skilltap.R
 import com.example.skilltap.databinding.FragmentAdvertDetailBinding
@@ -25,29 +28,16 @@ class AdvertDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_advert_detail, container, false)
+
+
         val bundle :  AdvertDetailFragmentArgs by navArgs()
         val id = bundle.id
 
         viewModel.getAdvertId(id)
 
-        viewModel.uiState.observe(viewLifecycleOwner){
-            design.uiState = it
-        }
-        viewModel.advertDetailState.observe(viewLifecycleOwner){
-            design.advertDetailState = it
-            //TODO: Review
-            it.advertDetail?.let {advertDetail ->
-                PicassoImage.covertToPicasso(advertDetail.image,design.baseImage)
-                PicassoImage.covertToPicasso(advertDetail.freelancer.imageURL,design.advertOwnerImageView)
-            }
+        viewModelActions()
 
-        }
 
-        viewModel.packageIncludeState.observe(viewLifecycleOwner){
-            design.packageState = it
-        }
-
-        viewModel.getAdvertId(id);
 
         design.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId) {
@@ -76,5 +66,41 @@ class AdvertDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val tempViewModel : AdvertDetailViewModelInterface by viewModels<AdvertDetailViewModel>()
         viewModel = tempViewModel
+    }
+
+    private fun viewModelActions(){
+        viewModel.uiState.observe(viewLifecycleOwner){
+            design.uiState = it
+            toolbarNavigation(it.navigationState,it.navTitle)
+
+
+        }
+        viewModel.advertDetailState.observe(viewLifecycleOwner){
+            design.advertDetailState = it
+            //TODO: Review
+            it.advertDetail?.let {advertDetail ->
+                PicassoImage.covertToPicasso(advertDetail.image,design.baseImage)
+                PicassoImage.covertToPicasso(advertDetail.freelancer.imageURL,design.advertOwnerImageView)
+            }
+
+        }
+
+        viewModel.packageIncludeState.observe(viewLifecycleOwner){
+            design.packageState = it
+        }
+
+    }
+
+    private  fun toolbarNavigation(state:Boolean,navTitle:Int){
+        (activity as? AppCompatActivity)?.supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(state)
+            title = getString(navTitle)
+        }
+
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+
+            findNavController().popBackStack()
+        }
     }
 }

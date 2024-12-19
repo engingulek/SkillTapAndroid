@@ -49,12 +49,17 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun `when open search screen ,uiState will be return searchbarPlaceHolder `() = runTest {
+    fun `when open search screen ,uiState will be return searchbarPlaceHolder and nav `() = runTest {
         viewModel = SearchViewModel(service)
         val state = viewModel.uiState.getOrAwaitValue()
 
        assertEquals("The searchPlaceholder is not correct",
            R.string.searchPlaceholder,state.searchbarPlaceHolder)
+        assertTrue(state.navigationState)
+
+
+        assertEquals("The search nav is not correct",
+            R.string.searchNav,state.navTitle)
     }
 
     @Test
